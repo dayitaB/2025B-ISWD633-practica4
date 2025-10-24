@@ -15,7 +15,10 @@ Asignar núcleos de CPU específicos:
 ```
 nproc
 ```
-- En Windows, se puede usar:
+- En Windows, se puede usar dos comandos:
+```
+docker info
+```
 ```
 wmic cpu get NumberOfLogicalProcessors
 ```
