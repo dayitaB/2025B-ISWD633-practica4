@@ -53,7 +53,7 @@ docker build -t <nombre imagen>:<tag> .
 ### Ejecutar el archivo Dockerfile y construir una imagen en la versión 1.0
 No olvides verificar en qué directorio se encuentra el archivo Dockerfile
 ```
-
+docker build -t mi-apache:1.0 .
 ```
 
 **¿Cuántos pasos se han ejecutado?**
