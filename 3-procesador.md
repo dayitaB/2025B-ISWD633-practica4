@@ -10,7 +10,19 @@ Asignar núcleos de CPU específicos:
 ```
 
 **¿Como saber el numero de procesadores virtuales que tiene una máquina?**
-## COMPLETAR
+
+- En Linux, se puede usar el comando, que muestra la cantidad de procesadores virtuales disponibles
+```
+nproc
+```
+- En Windows, se puede usar:
+```
+wmic cpu get NumberOfLogicalProcessors
+```
+- En macOS, se puede usar:
+```
+sysctl -n hw.logicalcpu
+```
 
 ## Ejemplos
 _Puedes copiar y ejecutar directamente cada uno de los comandos_
