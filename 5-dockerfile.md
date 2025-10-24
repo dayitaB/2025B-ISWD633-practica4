@@ -53,17 +53,34 @@ docker build -t <nombre imagen>:<tag> .
 ### Ejecutar el archivo Dockerfile y construir una imagen en la versión 1.0
 No olvides verificar en qué directorio se encuentra el archivo Dockerfile
 ```
-
+docker build -t mi-imagen-apache:1.0 .
 ```
 
 **¿Cuántos pasos se han ejecutado?**
-# RESPONDER 
+Se ejecutaron 6 pasos
+
+<img width="962" height="613" alt="imagen" src="https://github.com/user-attachments/assets/bf82b656-e916-47f7-b7f2-74f680f83a26" />
+
 
 ### Inspeccionar la imagen creada
-# COMPLETAR CON UNA CAPTURA
+```
+docker inspect mi-imagen-apache:1.0
+```
+<img width="1171" height="810" alt="imagen" src="https://github.com/user-attachments/assets/e737b03d-f285-4feb-ab5a-1d0f179ac3e5" />
+
 
 **Modificar el archivo index.html para incluir su nombre y luego crear una nueva versión de la imagen anterior**
-**¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
+```
+docker build -t mi-imagen-apache:2.0 .
+```
+
+**¿Cuántos pasos se han ejecutado? 
+
+Se ejecutan 5 pasos de construcción de capas. El número de pasos de construcción sigue siendo el mismo porque el Dockerfile no ha cambiado.
+
+¿Observa algo diferente en la creación de la imagen**
+Sí, la diferencia es el uso de la caché
+
 
 ## Mecanismo de caché
 Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
@@ -75,14 +92,17 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 
 ### Crear un contenedor a partir de las imagen creada, mapear todos los puertos
 ```
-
+docker run -d -P --name mi-contenedor-v1 mi-imagen-apache:1.0
 ```
 
 ### ¿Con que puerto host se está realizando el mapeo?
-# COMPLETAR CON LA RESPUESTA
+El mapeo se está realizando entre el puerto 80 del contenedor (que es el puerto que expone Apache, gracias a la instrucción EXPOSE 80 ) y el puerto 32769 de mi máquina host.
+<img width="774" height="257" alt="imagen" src="https://github.com/user-attachments/assets/a3b27f6b-d78e-462f-b7c6-19497994b9d8" />
+
 
 **¿Qué es una imagen huérfana?**
-# COMPLETAR CON LA RESPUESTA
+Una imagen huérfana (o dangling image) es una imagen de Docker que no está etiquetada (sin nombre ni tag) y no está siendo utilizada por ningún contenedor en ejecución.
+Estas imágenes son a menudo capas intermedias o versiones antiguas de imágenes que quedan almacenadas en el sistema después de un proceso de construcción exitoso, ocupando espacio en disco.
 
 ### Identificar imágenes huérfanas
 ```
